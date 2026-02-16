@@ -1,11 +1,12 @@
 import React from 'react';
-import { X } from 'lucide-react';
 
 function NewTaskModal({ isOpen, formData, onFormChange, onSubmit, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    /* [BUG - LAYERS] Changed z-50 to z-40, making modal backdrop appear on top of modal */
+    /* [FIX] Should be: className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50" */
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-40">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 border-2 border-slate-200 animate-in fade-in zoom-in-95 duration-200">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-black text-slate-900">Create New Task</h2>
@@ -13,13 +14,15 @@ function NewTaskModal({ isOpen, formData, onFormChange, onSubmit, onClose }) {
             onClick={onClose}
             className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
           >
-            <X className="w-5 h-5 text-slate-600" />
+            ✕
           </button>
         </div>
 
         <div className="space-y-4">
           {/* Task Title */}
-          <div>
+          {/* [BUG - SPACING] Added negative margin -m-10 causing input field to overlap with header */}
+          {/* [FIX] Should be removed or changed to positive margin */}
+          <div className="-m-10">
             <label className="block text-sm font-bold text-slate-700 mb-2">Task Title *</label>
             <input
               type="text"
@@ -31,8 +34,10 @@ function NewTaskModal({ isOpen, formData, onFormChange, onSubmit, onClose }) {
           </div>
 
           {/* Priority */}
+          {/* [BUG - COLOR & CONTRAST] Changed text color from text-slate-700 to text-white on white background, making text invisible */}
+          {/* [FIX] Should be: className="block text-sm font-bold text-slate-700 mb-2" */}
           <div>
-            <label className="block text-sm font-bold text-slate-700 mb-2">Priority</label>
+            <label className="block text-sm font-bold text-white mb-2">Priority</label>
             <select
               value={formData.priority}
               onChange={(e) => onFormChange('priority', e.target.value)}

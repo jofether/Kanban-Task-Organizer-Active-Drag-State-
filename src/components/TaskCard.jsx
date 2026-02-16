@@ -1,5 +1,4 @@
 import React from 'react';
-import { Clock, Trash2 } from 'lucide-react';
 import { getPriorityColor, getInitials } from '../utils/helpers';
 
 function TaskCard({ task, columnId, isDragging, onDragStart, onDelete }) {
@@ -19,7 +18,7 @@ function TaskCard({ task, columnId, isDragging, onDragStart, onDelete }) {
           onClick={() => onDelete(task.id, columnId)}
           className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-50 rounded-lg"
         >
-          <Trash2 className="w-4 h-4 text-red-500 hover:text-red-700" />
+          🗑️
         </button>
       </div>
       
@@ -27,8 +26,10 @@ function TaskCard({ task, columnId, isDragging, onDragStart, onDelete }) {
       
       <div className="flex items-center justify-between pt-3 border-t border-slate-100 gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
-          <Clock className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
-          <span className="text-xs text-slate-500 truncate">{task.dueDate}</span>
+          🕐
+          {/* [BUG - COLOR & CONTRAST] Changed text-slate-500 to text-slate-200, making due date text very faint against white background */}
+          {/* [FIX] Should be: className="text-xs text-slate-500 truncate" */}
+          <span className="text-xs text-slate-200 truncate">{task.dueDate}</span>
         </div>
         <div title={task.assignee} className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold shadow-md flex-shrink-0">
           {getInitials(task.assignee)}

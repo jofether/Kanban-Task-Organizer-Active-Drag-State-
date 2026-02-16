@@ -1,5 +1,4 @@
 import React from 'react';
-import { AlertCircle, Plus } from 'lucide-react';
 import TaskCard from './TaskCard';
 
 function Column({ columnId, column, tasks, draggedTaskId, onDragStart, onDragOver, onDrop, onDelete, onAddTask }) {
@@ -10,7 +9,9 @@ function Column({ columnId, column, tasks, draggedTaskId, onDragStart, onDragOve
       className="bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-slate-200 flex flex-col transition-all hover:shadow-xl hover:border-slate-300"
     >
       {/* Column Header */}
-      <div className={`bg-gradient-to-r ${column.color} p-5 text-white`}>
+      {/* [BUG - LAYERS] Added absolute positioning breaking the layout of column header */}
+      {/* [FIX] Should not have absolute positioning, should be relative/static */}
+      <div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-2xl">{column.icon}</span>
@@ -27,7 +28,7 @@ function Column({ columnId, column, tasks, draggedTaskId, onDragStart, onDragOve
         <div className="space-y-3 flex-1 overflow-y-auto">
           {tasks.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-40 text-slate-400">
-              <AlertCircle className="w-12 h-12 mb-3 opacity-30" />
+              ⚠️
               <p className="text-sm font-semibold">No tasks yet</p>
               <p className="text-xs opacity-75">Add one to get started</p>
             </div>
@@ -50,7 +51,7 @@ function Column({ columnId, column, tasks, draggedTaskId, onDragStart, onDragOve
           onClick={() => onAddTask(columnId)}
           className="w-full mt-4 py-3 px-4 rounded-xl border-2 border-dashed border-slate-300 hover:border-slate-400 text-slate-600 hover:text-slate-700 font-bold text-sm transition-all flex items-center justify-center gap-2 hover:bg-slate-50"
         >
-          <Plus className="w-4 h-4" />
+          ➕
           Add Task
         </button>
       </div>

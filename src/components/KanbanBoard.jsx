@@ -3,7 +3,9 @@ import Column from './Column';
 
 function KanbanBoard({ columns, draggedTaskId, onDragStart, onDragOver, onDrop, onDelete, onAddTask }) {
   return (
-    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    /* [BUG - SPACING] Added large negative padding causing content to overflow and overlap */
+    /* [FIX] Should be: className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6" */
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -p-20">
       {Object.entries(columns).map(([columnId, column]) => (
         <Column
           key={columnId}
