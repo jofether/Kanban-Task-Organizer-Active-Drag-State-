@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { ChevronRight, Plus, Clock, AlertCircle } from 'lucide-react';
+import Header from './components/Header';
+import StatsSection from './components/StatsSection';
+import KanbanBoard from './components/KanbanBoard';
+import NewTaskModal from './components/NewTaskModal';
 
 function App() {
   const [draggedTask, setDraggedTask] = useState(null);
   const [draggedFrom, setDraggedFrom] = useState(null);
+  const [showNewTaskModal, setShowNewTaskModal] = useState(false);
+  const [selectedColumn, setSelectedColumn] = useState(null);
+  const [nextId, setNextId] = useState(13);
+  const [formData, setFormData] = useState({ title: '', priority: 'medium', assignee: '', dueDate: '' });
 
   const [columns, setColumns] = useState({
     todo: {
@@ -11,29 +18,38 @@ function App() {
       title: 'To Do',
       color: 'from-blue-500 to-blue-600',
       lightBg: 'bg-blue-50',
+      icon: '📋',
       tasks: [
-        { id: 1, title: 'Design system update', priority: 'high', dueDate: 'Jan 15', assignee: 'Sarah' },
-        { id: 2, title: 'API documentation', priority: 'medium', dueDate: 'Jan 20', assignee: 'Mike' },
+        { id: 1, title: 'Design system update', priority: 'high', dueDate: 'Feb 20', assignee: 'Sarah' },
+        { id: 2, title: 'API documentation', priority: 'medium', dueDate: 'Feb 25', assignee: 'Mike' },
+        { id: 3, title: 'Database optimization', priority: 'high', dueDate: 'Feb 18', assignee: 'John' },
+        { id: 4, title: 'Mobile responsiveness fixes', priority: 'medium', dueDate: 'Feb 22', assignee: 'Emma' },
+        { id: 5, title: 'User authentication flow', priority: 'high', dueDate: 'Feb 19', assignee: 'Alex' },
       ],
     },
     inProgress: {
       id: 'inProgress',
       title: 'In Progress',
-      color: 'from-amber-500 to-amber-600',
+      color: 'from-amber-500 to-orange-600',
       lightBg: 'bg-amber-50',
+      icon: '⚡',
       tasks: [
-        { id: 3, title: 'Fix navigation z-index', priority: 'high', dueDate: 'Jan 12', assignee: 'John' },
-        { id: 4, title: 'Update hero images', priority: 'medium', dueDate: 'Jan 18', assignee: 'Emma' },
+        { id: 6, title: 'Fix navigation z-index', priority: 'high', dueDate: 'Feb 17', assignee: 'Lisa' },
+        { id: 7, title: 'Update hero images', priority: 'medium', dueDate: 'Feb 23', assignee: 'Sarah' },
+        { id: 8, title: 'Payment gateway integration', priority: 'high', dueDate: 'Feb 16', assignee: 'Mike' },
       ],
     },
     done: {
       id: 'done',
       title: 'Done',
-      color: 'from-green-500 to-green-600',
+      color: 'from-green-500 to-emerald-600',
       lightBg: 'bg-green-50',
+      icon: '✅',
       tasks: [
-        { id: 5, title: 'Write unit tests', priority: 'low', dueDate: 'Jan 10', assignee: 'Alex' },
-        { id: 6, title: 'Code review completed', priority: 'medium', dueDate: 'Jan 11', assignee: 'Lisa' },
+        { id: 9, title: 'Write unit tests', priority: 'low', dueDate: 'Feb 10', assignee: 'John' },
+        { id: 10, title: 'Code review completed', priority: 'medium', dueDate: 'Feb 11', assignee: 'Emma' },
+        { id: 11, title: 'Deploy to staging', priority: 'high', dueDate: 'Feb 14', assignee: 'Alex' },
+        { id: 12, title: 'Performance monitoring setup', priority: 'medium', dueDate: 'Feb 13', assignee: 'Lisa' },
       ],
     },
   });
@@ -76,125 +92,78 @@ function App() {
     setDraggedFrom(null);
   };
 
-  const getPriorityColor = (priority) => {
-    switch (priority) {
-      case 'high':
-        return 'bg-red-100 text-red-700';
-      case 'medium':
-        return 'bg-yellow-100 text-yellow-700';
-      case 'low':
-        return 'bg-green-100 text-green-700';
-      default:
-        return 'bg-slate-100 text-slate-700';
-    }
+  const handleAddTask = () => {
+    if (!formData.title.trim()) return;
+
+    const newTask = {
+      id: nextId,
+      title: formData.title,
+      priority: formData.priority,
+      dueDate: formData.dueDate || 'No date',
+      assignee: formData.assignee || 'Unassigned',
+    };
+
+    setColumns(prev => ({
+      ...prev,
+      [selectedColumn]: {
+        ...prev[selectedColumn],
+        tasks: [...prev[selectedColumn].tasks, newTask],
+      },
+    }));
+
+    setNextId(nextId + 1);
+    setFormData({ title: '', priority: 'medium', assignee: '', dueDate: '' });
+    setShowNewTaskModal(false);
   };
 
-  const getInitials = (name) => {
-    return name
-      .split(' ')
-      .map(n => n[0])
-      .join('')
-      .toUpperCase();
+  const handleDeleteTask = (taskId, columnId) => {
+    setColumns(prev => ({
+      ...prev,
+      [columnId]: {
+        ...prev[columnId],
+        tasks: prev[columnId].tasks.filter(t => t.id !== taskId),
+      },
+    }));
   };
 
-  const TaskCard = ({ task, columnId, isDragging }) => (
-    <div
-      draggable
-      onDragStart={(e) => handleDragStart(e, task.id, columnId)}
-      className={`group bg-white p-4 rounded-lg border border-slate-200 cursor-move transition-all duration-200 hover:shadow-lg hover:border-slate-300 ${
-        isDragging ? 'opacity-50 scale-95' : 'hover:scale-102'
-      }`}
-    >
-      <div className="flex items-start justify-between mb-3">
-        <span className={`text-xs font-semibold px-2 py-1 rounded-md ${getPriorityColor(task.priority)}`}>
-          {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
-        </span>
-        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-          <ChevronRight className="w-4 h-4 text-slate-400" />
-        </div>
-      </div>
-      
-      <h3 className="text-sm font-semibold text-slate-800 mb-3 line-clamp-2">{task.title}</h3>
-      
-      <div className="flex items-center justify-between pt-3 border-t border-slate-100">
-        <div className="flex items-center gap-2">
-          <Clock className="w-3.5 h-3.5 text-slate-400" />
-          <span className="text-xs text-slate-500">{task.dueDate}</span>
-        </div>
-        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
-          {getInitials(task.assignee)}
-        </div>
-      </div>
-    </div>
-  );
+  const openAddTaskModal = (columnId) => {
+    setSelectedColumn(columnId);
+    setShowNewTaskModal(true);
+  };
+
+  const closeModal = () => {
+    setShowNewTaskModal(false);
+    setFormData({ title: '', priority: 'medium', assignee: '', dueDate: '' });
+  };
+
+  const handleFormChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8">
-      {/* Header */}
-      <div className="max-w-7xl mx-auto mb-12">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Project Board</h1>
-            <p className="text-slate-400">Organize and track your tasks in real-time</p>
-          </div>
-          <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-2 rounded-lg font-semibold flex items-center gap-2 transition-all hover:shadow-lg">
-            <Plus className="w-5 h-5" />
-            New Task
-          </button>
-        </div>
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 p-6 md:p-8">
+        <Header onAddTask={() => openAddTaskModal('todo')} />
+        <StatsSection columns={columns} />
+        <KanbanBoard
+          columns={columns}
+          draggedTaskId={draggedTask}
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+          onDelete={handleDeleteTask}
+          onAddTask={openAddTaskModal}
+        />
       </div>
 
-      {/* Kanban Board */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        {Object.entries(columns).map(([columnId, column]) => (
-          <div
-            key={columnId}
-            onDragOver={handleDragOver}
-            onDrop={(e) => handleDrop(e, columnId)}
-            className="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-slate-600 transition-colors"
-          >
-            {/* Column Header */}
-            <div className={`bg-gradient-to-r ${column.color} p-4`}>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <h2 className="text-white font-bold text-lg">{column.title}</h2>
-                  <span className="bg-white bg-opacity-20 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-                    {column.tasks.length}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Column Body */}
-            <div className="p-4 min-h-[500px]">
-              <div className="space-y-3">
-                {column.tasks.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-40 text-slate-400">
-                    <AlertCircle className="w-12 h-12 mb-2 opacity-20" />
-                    <p className="text-sm">No tasks yet</p>
-                  </div>
-                ) : (
-                  column.tasks.map(task => (
-                    <TaskCard
-                      key={task.id}
-                      task={task}
-                      columnId={columnId}
-                      isDragging={draggedTask === task.id}
-                    />
-                  ))
-                )}
-              </div>
-
-              {/* Add Task Button */}
-              <button className="w-full mt-4 py-2 px-4 rounded-lg border-2 border-dashed border-slate-600 hover:border-slate-500 text-slate-400 hover:text-slate-300 font-medium text-sm transition-all flex items-center justify-center gap-2">
-                <Plus className="w-4 h-4" />
-                Add Task
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      <NewTaskModal
+        isOpen={showNewTaskModal}
+        formData={formData}
+        onFormChange={handleFormChange}
+        onSubmit={handleAddTask}
+        onClose={closeModal}
+      />
+    </>
   );
 }
 
