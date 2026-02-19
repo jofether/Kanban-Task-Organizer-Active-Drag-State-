@@ -1,5 +1,4 @@
 import React from 'react';
-import { Plus } from 'lucide-react';
 
 function Header({ onAddTask }) {
   return (
@@ -17,7 +16,7 @@ function Header({ onAddTask }) {
           onClick={onAddTask}
           className="flex-shrink-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg"
         >
-          <Plus className="w-5 h-5" />
+          ➕
           New Task
         </button>
       </div>
