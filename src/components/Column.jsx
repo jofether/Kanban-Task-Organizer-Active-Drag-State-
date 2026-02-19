@@ -8,9 +8,6 @@ function Column({ columnId, column, tasks, draggedTaskId, onDragStart, onDragOve
       onDrop={(e) => onDrop(e, columnId)}
       className="bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-slate-200 flex flex-col transition-all hover:shadow-xl hover:border-slate-300"
     >
-      {/* Column Header */}
-      {/* [BUG - LAYERS] Added absolute positioning breaking the layout of column header */}
-      {/* [FIX] Should not have absolute positioning, should be relative/static */}
       <div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
