@@ -2,6 +2,7 @@
   "repository": "Kanban Task Organizer (Active Drag State)",
   "bugs": [
     {
+      "comment": "Bug #1 - position",
       "bug_category": "Layers",
       "bug_type": "position",
       "file_modified": "src/components/Column.jsx",
@@ -10,13 +11,14 @@
       "buggy_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>",
       "css_selector": ".bg-gradient-to-r",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
-      }
+            "x": 34,
+            "y": 559,
+            "width": 144,
+            "height": 88
+          }
     },
     {
+      "comment": "Bug #2 - flexbox",
       "bug_category": "Layout",
       "bug_type": "flexbox",
       "file_modified": "src/components/Header.jsx",
@@ -25,13 +27,14 @@
       "buggy_code": "<div className=\"flex flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
       "css_selector": ".flex.flex-row",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 32,
+        "y": 32,
+        "width": 1216,
+        "height": 151
       }
     },
     {
+      "comment": "Bug #3 - text-slt-900",
       "bug_category": "Typo",
       "bug_type": "text-slt-900",
       "file_modified": "src/components/Header.jsx",
@@ -40,13 +43,14 @@
       "buggy_code": "<h1 className=\"text-5xl font-black text-slt-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
       "css_selector": ".text-slt-900",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 66,
+        "y": 66,
+        "width": 479,
+        "height": 48
       }
     },
     {
+      "comment": "Bug #4 - from-blue-6",
       "bug_category": "Typo",
       "bug_type": "from-blue-600",
       "file_modified": "src/components/Header.jsx",
@@ -55,13 +59,14 @@
       "buggy_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-6 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
       "css_selector": ".from-blue-6",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 1053,
+        "y": 84,
+        "width": 161,
+        "height": 48
       }
     },
     {
+      "comment": "Bug #5 - padding",
       "bug_category": "Spacing",
       "bug_type": "padding",
       "file_modified": "src/components/KanbanBoard.jsx",
@@ -70,13 +75,14 @@
       "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -p-20\">",
       "css_selector": ".-p-20",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 32,
+        "y": 558,
+        "width": 1216,
+        "height": 911
       }
     },
     {
+      "comment": "Bug #6 - z-index",
       "bug_category": "Layers",
       "bug_type": "z-index",
       "file_modified": "src/components/NewTaskModal.jsx",
@@ -87,11 +93,12 @@
       "bounding_box": {
         "x": 0,
         "y": 0,
-        "width": 0,
-        "height": 0
+        "width": 1280,
+        "height": 720
       }
     },
     {
+      "comment": "Bug #7 - margin",
       "bug_category": "Spacing",
       "bug_type": "margin",
       "file_modified": "src/components/NewTaskModal.jsx",
@@ -100,13 +107,14 @@
       "buggy_code": "<div className=\"-m-10\">",
       "css_selector": ".-m-10",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 410,
+        "y": 167,
+        "width": 461,
+        "height": 79
       }
     },
     {
+      "comment": "Bug #8 - text-white",
       "bug_category": "Color",
       "bug_type": "text-white",
       "file_modified": "src/components/NewTaskModal.jsx",
@@ -115,13 +123,14 @@
       "buggy_code": "<label className=\"block text-sm font-bold text-white mb-2\">Priority</label>",
       "css_selector": ".text-white",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 450,
+        "y": 223,
+        "width": 381,
+        "height": 20
       }
     },
     {
+      "comment": "Bug #9 - grid",
       "bug_category": "Layout",
       "bug_type": "grid",
       "file_modified": "src/components/StatsSection.jsx",
@@ -130,13 +139,14 @@
       "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-2 gap-4 md:gap-6 mb-10\">",
       "css_selector": ".grid-cols-2",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 32,
+        "y": 223,
+        "width": 1216,
+        "height": 294
       }
     },
     {
+      "comment": "Bug #10 - text-slate-200",
       "bug_category": "Color",
       "bug_type": "text-slate-200",
       "file_modified": "src/components/TaskCard.jsx",
@@ -145,11 +155,11 @@
       "buggy_code": "<span className=\"text-xs text-slate-200 truncate\">{task.dueDate}</span>",
       "css_selector": ".text-slate-200",
       "bounding_box": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
-      }
+            "x": 926,
+            "y": 691,
+            "width": 35,
+            "height": 16
+          }
     }
   ]
 }
