@@ -9,12 +9,12 @@
       "line_number": 11,
       "clean_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white`}>",
       "buggy_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>",
-      "css_selector": ".bg-gradient-to-r",
+      "css_selector": "div.bg-gradient-to-r.p-5 >> h2",
       "bounding_box": {
             "x": 34,
             "y": 559,
-            "width": 144,
-            "height": 88
+            "width": 384,
+            "height": 300
           }
     },
     {
@@ -25,7 +25,7 @@
       "line_number": 6,
       "clean_code": "<div className=\"flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
       "buggy_code": "<div className=\"flex flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
-      "css_selector": ".flex.flex-row",
+      "css_selector": ".flex.justify-between.bg-white",
       "bounding_box": {
         "x": 32,
         "y": 32,
@@ -41,7 +41,7 @@
       "line_number": 8,
       "clean_code": "<h1 className=\"text-5xl font-black text-slate-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
       "buggy_code": "<h1 className=\"text-5xl font-black text-slt-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
-      "css_selector": ".text-slt-900",
+      "css_selector": "h1.text-5xl.font-black.bg-clip-text",
       "bounding_box": {
         "x": 66,
         "y": 66,
@@ -57,7 +57,7 @@
       "line_number": 17,
       "clean_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
       "buggy_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-6 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
-      "css_selector": ".from-blue-6",
+      "css_selector": "button.flex-shrink-0.bg-gradient-to-r.text-white >> text=New Task",
       "bounding_box": {
         "x": 1053,
         "y": 84,
@@ -73,7 +73,7 @@
       "line_number": 6,
       "clean_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6\">",
       "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -p-20\">",
-      "css_selector": ".-p-20",
+      "css_selector": "div.max-w-7xl.mx-auto.grid",
       "bounding_box": {
         "x": 32,
         "y": 558,
@@ -89,7 +89,7 @@
       "line_number": 7,
       "clean_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50\">",
       "buggy_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-40\">",
-      "css_selector": ".z-40",
+      "css_selector": ".fixed.inset-0.backdrop-blur-sm",
       "bounding_box": {
         "x": 0,
         "y": 0,
@@ -105,12 +105,12 @@
       "line_number": 20,
       "clean_code": "<div>",
       "buggy_code": "<div className=\"-m-10\">",
-      "css_selector": ".-m-10",
+      "css_selector": ".space-y-4 > div:first-of-type",
       "bounding_box": {
-        "x": 410,
-        "y": 167,
-        "width": 461,
-        "height": 79
+        "x": 350,
+        "y": 150,
+        "width": 600,
+        "height": 200
       }
     },
     {
@@ -121,7 +121,7 @@
       "line_number": 32,
       "clean_code": "<label className=\"block text-sm font-bold text-slate-700 mb-2\">Priority</label>",
       "buggy_code": "<label className=\"block text-sm font-bold text-white mb-2\">Priority</label>",
-      "css_selector": ".text-white",
+      "css_selector": "label:has-text(\"Priority\")",
       "bounding_box": {
         "x": 450,
         "y": 223,
@@ -137,7 +137,7 @@
       "line_number": 6,
       "clean_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-3 gap-4 md:gap-6 mb-10\">",
       "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-2 gap-4 md:gap-6 mb-10\">",
-      "css_selector": ".grid-cols-2",
+      "css_selector": "div.max-w-7xl.mx-auto.grid.gap-4.mb-10",
       "bounding_box": {
         "x": 32,
         "y": 223,
@@ -153,7 +153,7 @@
       "line_number": 30,
       "clean_code": "<span className=\"text-xs text-slate-500 truncate\">{task.dueDate}</span>",
       "buggy_code": "<span className=\"text-xs text-slate-200 truncate\">{task.dueDate}</span>",
-      "css_selector": ".text-slate-200",
+      "css_selector": "div.group >> span.truncate",
       "bounding_box": {
             "x": 926,
             "y": 691,
