@@ -1,0 +1,7 @@
+{
+  "actions": [
+    { "name": "bug-6-OpenModal", "selector": "button:has-text(\"New Task\")" },
+    { "name": "bug-7-OpenModal", "selector": "button:has-text(\"New Task\")" },
+    { "name": "bug-8-OpenModal", "selector": "button:has-text(\"New Task\")" }
+  ]
+}
