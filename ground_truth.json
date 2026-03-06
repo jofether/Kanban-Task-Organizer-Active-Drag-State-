@@ -3,28 +3,30 @@
   "bugs": [
     {
       "comment": "Bug #1 - position",
+      "report_text": "The column header is positioned off the normal layout flow, creating an unintended overlay effect.",
       "bug_category": "Layers",
       "bug_type": "position",
       "file_modified": "src/components/Column.jsx",
       "line_number": 11,
-      "clean_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white`}>",
-      "buggy_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>",
+      "neg_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white`}>",
+      "pos_code": "<div className={`bg-gradient-to-r ${column.color} p-5 text-white absolute`}>",
       "css_selector": "div.bg-gradient-to-r.p-5 >> h2",
       "bounding_box": {
-            "x": 34,
-            "y": 559,
-            "width": 384,
-            "height": 300
-          }
+        "x": 34,
+        "y": 559,
+        "width": 384,
+        "height": 300
+      }
     },
     {
       "comment": "Bug #2 - flexbox",
+      "report_text": "The header content is displaying horizontally on mobile devices instead of stacking vertically for better readability.",
       "bug_category": "Layout",
       "bug_type": "flexbox",
       "file_modified": "src/components/Header.jsx",
       "line_number": 6,
-      "clean_code": "<div className=\"flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
-      "buggy_code": "<div className=\"flex flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
+      "neg_code": "<div className=\"flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
+      "pos_code": "<div className=\"flex flex-row items-start md:items-center justify-between gap-6 bg-white rounded-2xl p-8 shadow-lg border-2 border-slate-100\">",
       "css_selector": ".flex.justify-between.bg-white",
       "bounding_box": {
         "x": 32,
@@ -35,12 +37,13 @@
     },
     {
       "comment": "Bug #3 - text-slt-900",
+      "report_text": "The main heading text is not rendering with the intended dark color, appearing unstyled.",
       "bug_category": "Typo",
       "bug_type": "text-slt-900",
       "file_modified": "src/components/Header.jsx",
       "line_number": 8,
-      "clean_code": "<h1 className=\"text-5xl font-black text-slate-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
-      "buggy_code": "<h1 className=\"text-5xl font-black text-slt-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
+      "neg_code": "<h1 className=\"text-5xl font-black text-slate-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
+      "pos_code": "<h1 className=\"text-5xl font-black text-slt-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent\">",
       "css_selector": "h1.text-5xl.font-black.bg-clip-text",
       "bounding_box": {
         "x": 66,
@@ -51,12 +54,13 @@
     },
     {
       "comment": "Bug #4 - from-blue-6",
+      "report_text": "The button gradient transition is not rendering properly, displaying an incomplete color palette.",
       "bug_category": "Typo",
       "bug_type": "from-blue-600",
       "file_modified": "src/components/Header.jsx",
       "line_number": 17,
-      "clean_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
-      "buggy_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-6 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
+      "neg_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
+      "pos_code": "className=\"flex-shrink-0 bg-gradient-to-r from-blue-6 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:shadow-xl hover:scale-105 active:scale-95 shadow-lg\"",
       "css_selector": "button.flex-shrink-0.bg-gradient-to-r.text-white >> text=New Task",
       "bounding_box": {
         "x": 1053,
@@ -67,12 +71,13 @@
     },
     {
       "comment": "Bug #5 - padding",
+      "report_text": "The board cards appear with excessive negative spacing, creating gaps between the content and containers.",
       "bug_category": "Spacing",
       "bug_type": "padding",
       "file_modified": "src/components/KanbanBoard.jsx",
       "line_number": 6,
-      "clean_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6\">",
-      "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -p-20\">",
+      "neg_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6\">",
+      "pos_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 -p-20\">",
       "css_selector": "div.max-w-7xl.mx-auto.grid",
       "bounding_box": {
         "x": 32,
@@ -83,12 +88,13 @@
     },
     {
       "comment": "Bug #6 - z-index",
+      "report_text": "The modal overlay is appearing behind other page elements instead of on top as intended.",
       "bug_category": "Layers",
       "bug_type": "z-index",
       "file_modified": "src/components/NewTaskModal.jsx",
       "line_number": 7,
-      "clean_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50\">",
-      "buggy_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-40\">",
+      "neg_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50\">",
+      "pos_code": "<div className=\"fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-40\">",
       "css_selector": ".fixed.inset-0.backdrop-blur-sm",
       "bounding_box": {
         "x": 0,
@@ -99,12 +105,13 @@
     },
     {
       "comment": "Bug #7 - margin",
+      "report_text": "The form fields are unexpectedly collapsed and overlapping with adjacent elements due to negative spacing.",
       "bug_category": "Spacing",
       "bug_type": "margin",
       "file_modified": "src/components/NewTaskModal.jsx",
       "line_number": 20,
-      "clean_code": "<div>",
-      "buggy_code": "<div className=\"-m-10\">",
+      "neg_code": "<div>",
+      "pos_code": "<div className=\"-m-10\">",
       "css_selector": ".space-y-4 > div:first-of-type",
       "bounding_box": {
         "x": 350,
@@ -115,12 +122,13 @@
     },
     {
       "comment": "Bug #8 - text-white",
+      "report_text": "The 'Priority' label text is invisible against the background, making it unreadable.",
       "bug_category": "Color",
       "bug_type": "text-white",
       "file_modified": "src/components/NewTaskModal.jsx",
       "line_number": 32,
-      "clean_code": "<label className=\"block text-sm font-bold text-slate-700 mb-2\">Priority</label>",
-      "buggy_code": "<label className=\"block text-sm font-bold text-white mb-2\">Priority</label>",
+      "neg_code": "<label className=\"block text-sm font-bold text-slate-700 mb-2\">Priority</label>",
+      "pos_code": "<label className=\"block text-sm font-bold text-white mb-2\">Priority</label>",
       "css_selector": "label:has-text(\"Priority\")",
       "bounding_box": {
         "x": 450,
@@ -131,12 +139,13 @@
     },
     {
       "comment": "Bug #9 - grid",
+      "report_text": "The statistics cards are displaying in two columns instead of the intended three-column layout.",
       "bug_category": "Layout",
       "bug_type": "grid",
       "file_modified": "src/components/StatsSection.jsx",
       "line_number": 6,
-      "clean_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-3 gap-4 md:gap-6 mb-10\">",
-      "buggy_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-2 gap-4 md:gap-6 mb-10\">",
+      "neg_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-3 gap-4 md:gap-6 mb-10\">",
+      "pos_code": "<div className=\"max-w-7xl mx-auto grid grid-cols-2 gap-4 md:gap-6 mb-10\">",
       "css_selector": "div.max-w-7xl.mx-auto.grid.gap-4.mb-10",
       "bounding_box": {
         "x": 32,
@@ -147,19 +156,20 @@
     },
     {
       "comment": "Bug #10 - text-slate-200",
+      "report_text": "The due date text is too light and nearly invisible against the task card background.",
       "bug_category": "Color",
       "bug_type": "text-slate-200",
       "file_modified": "src/components/TaskCard.jsx",
       "line_number": 30,
-      "clean_code": "<span className=\"text-xs text-slate-500 truncate\">{task.dueDate}</span>",
-      "buggy_code": "<span className=\"text-xs text-slate-200 truncate\">{task.dueDate}</span>",
+      "neg_code": "<span className=\"text-xs text-slate-500 truncate\">{task.dueDate}</span>",
+      "pos_code": "<span className=\"text-xs text-slate-200 truncate\">{task.dueDate}</span>",
       "css_selector": "div.group >> span.truncate",
       "bounding_box": {
-            "x": 926,
-            "y": 691,
-            "width": 35,
-            "height": 16
-          }
+        "x": 926,
+        "y": 691,
+        "width": 35,
+        "height": 16
+      }
     }
   ]
 }
